@@ -5,36 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>New Year: Chapter 2025</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+  <!-- Pixel Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 
   <style>
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      image-rendering: pixelated;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at top, #0f172a, #020617);
-      color: #e5e7eb;
-      font-family: 'Inter', sans-serif;
+      background: linear-gradient(#60a5fa, #1e3a8a);
+      font-family: 'Press Start 2P', monospace;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      color: #fefce8;
     }
 
     .game {
       width: 100%;
-      max-width: 420px;
-      padding: 32px;
+      max-width: 440px;
+      padding: 24px;
+      background: #1e293b;
+      border: 6px solid #facc15;
+      box-shadow: 0 0 0 6px #1e293b, 0 0 0 12px #fde047;
       text-align: center;
     }
 
     .screen {
       display: none;
-      animation: fadeIn 0.6s ease;
+      animation: fadeIn 0.5s steps(6) forwards;
     }
 
     .screen.active {
@@ -42,105 +46,152 @@
     }
 
     h1 {
-      font-family: 'Space Mono', monospace;
-      font-size: 1.6rem;
+      font-size: 0.8rem;
+      line-height: 1.7;
       margin-bottom: 24px;
-      letter-spacing: 0.05em;
+      color: #fde68a;
     }
 
     p {
-      font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 16px;
-      color: #cbd5f5;
+      font-size: 0.6rem;
+      line-height: 2;
+      margin-bottom: 14px;
+      color: #fef3c7;
     }
 
     .btn {
-      margin-top: 24px;
-      padding: 12px 24px;
-      border: 1px solid #64748b;
-      background: transparent;
-      color: #e5e7eb;
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.1em;
+      margin-top: 20px;
+      padding: 10px 16px;
+      border: 4px solid #facc15;
+      background: #f59e0b;
+      color: #1e293b;
+      font-size: 0.6rem;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
     .btn:hover {
-      background: #1e293b;
-      border-color: #94a3b8;
+      background: #fde047;
     }
 
     .paths {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-top: 24px;
+      gap: 14px;
+      margin-top: 20px;
     }
 
     .path {
-      border: 1px solid #475569;
-      padding: 16px;
+      border: 4px solid #facc15;
+      padding: 14px;
+      background: #0f172a;
       cursor: pointer;
-      transition: all 0.3s ease;
     }
 
     .path:hover {
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-2px);
+      background: #1e3a8a;
     }
 
     .path h2 {
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      font-weight: 500;
+      font-size: 0.65rem;
+      margin-bottom: 6px;
+      color: #fde047;
     }
 
     .path span {
-      font-size: 0.9rem;
-      color: #94a3b8;
+      font-size: 0.55rem;
+      color: #e0f2fe;
     }
 
     .credits {
-      font-size: 0.85rem;
-      color: #64748b;
-      margin-top: 40px;
+      font-size: 0.5rem;
+      color: #fde68a;
+      margin-top: 28px;
+    }
+
+    .music-toggle {
+      position: fixed;
+      top: 16px;
+      right: 16px;
+      font-size: 0.5rem;
+      background: #facc15;
+      color: #1e293b;
+      border: 3px solid #92400e;
+      padding: 6px 8px;
+      cursor: pointer;
+    }
+
+    .icon {
+      font-size: 1rem;
+      margin-bottom: 12px;
+      display: block;
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 
 <body>
 
+  <!-- Music -->
+  <audio id="bgm" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="music-toggle" onclick="toggleMusic()">🎵 MUSIC: OFF</div>
+
   <div class="game">
 
     <!-- START -->
     <div class="screen active" id="screen-start">
-      <h1>New Year: Chapter 2025</h1>
-      <button class="btn" onclick="goTo('screen-context')">START</button>
+      <span class="icon">⭐</span>
+      <h1>
+        Happy New Year, Ketua!<br>
+        Special Notes to Reflect a New Chapter
+      </h1>
+      <button class="btn" onclick="goTo('screen-context')">▶ START</button>
     </div>
 
     <!-- CONTEXT -->
     <div class="screen" id="screen-context">
-      <p>This year wasn’t easy.</p>
-      <p>You don’t need to explain it.<br>You don’t need to be strong here.</p>
-      <p>Just choose one path.<br>There’s no wrong answer.</p>
-      <button class="btn" onclick="goTo('screen-paths')">CONTINUE</button>
+      <span class="icon">💬</span>
+      <p>Gimana rasanya tidur 1 tahun?</p>
+      <p>Ahahahah, kayanya udah bangun ya.</p>
+
+      <p>
+        Well, here we are. A new year.<br>
+        As what you said,<br>
+        new year, new me (siap, ketua).
+      </p>
+
+      <p>
+        This year might not be easy for you,<br>
+        and honestly, for almost everyone.
+      </p>
+
+      <p>
+        Just want to say,<br>
+        you don’t need to explain anything here.
+      </p>
+
+      <p>
+        And in this space,<br>
+        you don’t need to be strong.
+      </p>
+
+      <p>
+        Just choose one path.<br>
+        There’s no wrong answer.
+      </p>
+
+      <button class="btn" onclick="goTo('screen-paths')">➡ CONTINUE</button>
     </div>
 
     <!-- PATHS -->
     <div class="screen" id="screen-paths">
+      <span class="icon">🧭</span>
       <h1>Choose Your Path</h1>
       <div class="paths">
         <div class="path" onclick="goTo('screen-healing')">
@@ -160,35 +211,39 @@
 
     <!-- HEALING -->
     <div class="screen" id="screen-healing">
+      <span class="icon">❤️</span>
       <p>It’s okay if you’re not okay yet.</p>
-      <p>Healing doesn’t mean forgetting.<br>It means letting yourself breathe again.</p>
-      <p>I hope this year gives you gentler days.<br>And when it feels heavy, I hope you don’t face it alone.</p>
+      <p>Healing doesn’t mean forgetting.</p>
+      <p>It means letting yourself breathe again.</p>
       <p>You don’t owe the world your strength.</p>
-      <button class="btn" onclick="goTo('screen-end')">CONTINUE</button>
+      <button class="btn" onclick="goTo('screen-end')">➡ CONTINUE</button>
     </div>
 
     <!-- BRAVERY -->
     <div class="screen" id="screen-bravery">
+      <span class="icon">🔥</span>
       <p>Choosing to move forward after being hurt is brave.</p>
       <p>Even showing up is brave.</p>
-      <p>I hope 2025 meets you with moments that remind you<br>you are more than what broke you.</p>
       <p>You’re allowed to want more. Even now.</p>
-      <button class="btn" onclick="goTo('screen-end')">CONTINUE</button>
+      <button class="btn" onclick="goTo('screen-end')">➡ CONTINUE</button>
     </div>
 
     <!-- PEACE -->
     <div class="screen" id="screen-peace">
+      <span class="icon">🏳️</span>
       <p>Wanting peace is not giving up.</p>
       <p>It’s choosing yourself.</p>
-      <p>I hope this year feels softer.<br>Less noise. Less weight. More room to breathe.</p>
-      <p>You deserve that kind of quiet.</p>
-      <button class="btn" onclick="goTo('screen-end')">CONTINUE</button>
+      <p>Less noise. Less weight.</p>
+      <p>More room to breathe.</p>
+      <button class="btn" onclick="goTo('screen-end')">➡ CONTINUE</button>
     </div>
 
     <!-- END -->
     <div class="screen" id="screen-end">
+      <span class="icon">🏁</span>
       <h1>End of Chapter One</h1>
-      <p>Next chapter unlocks naturally.<br>No rush.</p>
+      <p>Next chapter unlocks naturally.</p>
+      <p>No rush.</p>
       <div class="credits">From someone who cares about you.</div>
     </div>
 
@@ -196,9 +251,24 @@
 
   <script>
     function goTo(id) {
-      const screens = document.querySelectorAll('.screen');
-      screens.forEach(screen => screen.classList.remove('active'));
+      document.querySelectorAll('.screen')
+        .forEach(screen => screen.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+    }
+
+    const music = document.getElementById('bgm');
+    const toggle = document.querySelector('.music-toggle');
+    let playing = false;
+
+    function toggleMusic() {
+      if (!playing) {
+        music.play();
+        toggle.innerText = '🎵 MUSIC: ON';
+      } else {
+        music.pause();
+        toggle.innerText = '🎵 MUSIC: OFF';
+      }
+      playing = !playing;
     }
   </script>
 
